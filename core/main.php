@@ -14,8 +14,20 @@ class main {
 
     static public function run() {
         $route = new \core\lib\route();
-        p($route);
-        p($_GET);
+        $ctrlName = $route->ctrl;
+        $action = $route->action;
+        $ctrlFile = APP.'/ctrl/'.$ctrlName.'Ctrl.php';
+        $ctrlClass = '\\'.MODULE.'\\ctrl\\'.$ctrlName.'Ctrl';
+
+        if(is_file($ctrlFile)) {
+            require_once $ctrlFile;
+            $ctrl = new $ctrlClass();
+            $ctrl->$action();
+        }
+        else {
+            throw new \Exception("找不到控制器:".$ctrlName);
+
+        }
     }
 
     // 自动加载类库

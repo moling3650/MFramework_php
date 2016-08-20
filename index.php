@@ -14,6 +14,7 @@
 define('BASE_DIR', realpath('./'));
 define('CORE', BASE_DIR.'/core');
 define('APP', BASE_DIR.'/app');
+define('MODULE', 'app');
 
 define('DEBUG', true);
 
