@@ -7,13 +7,15 @@
  */
 namespace app\ctrl;
 
-class indexCtrl {
+class indexCtrl extends \core\main
+{
 
-    public function index() {
-        p('it is index');
-        $model = new \core\lib\model();
-        $sql = 'SELECT * FROM blogs';
-        $res = $model->query($sql);
-        p($res->fetchAll());
+    public function index()
+    {
+        $data = 'Hello World';
+        $title = '视图文件';
+        $this->assign('title', $title);
+        $this->assign('data', $data);
+        $this->display('index.html');
     }
 }

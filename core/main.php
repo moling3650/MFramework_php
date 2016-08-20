@@ -9,10 +9,13 @@
 namespace core;
 
 
-class main {
+class main
+{
     public static $classMap = array();
+    public $assign = array();
 
-    static public function run() {
+    static public function run()
+    {
         $route = new \core\lib\route();
         $ctrlName = $route->ctrl;
         $action = $route->action;
@@ -48,6 +51,20 @@ class main {
             else {
                 return false;
             }
+        }
+    }
+
+    public function assign($name, $value)
+    {
+        $this->assign[$name] = $value;
+    }
+
+    public function display($fileName)
+    {
+        $file = APP.'/views/'.$fileName;
+        if(is_file($file)) {
+            extract($this->assign);
+            require_once $file;
         }
     }
 }
