@@ -15,6 +15,6 @@ function p($var) {
         var_dump(NULL);
     }
     else {
-        echo print_r($var, true);
+        echo "<pre>".print_r($var, true)."</pre>";
     }
 }
