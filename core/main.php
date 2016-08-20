@@ -13,11 +13,13 @@ class main {
     public static $classMap = array();
 
     static public function run() {
-        $route = new \core\route();
+        $route = new \core\lib\route();
+        p($route);
+        p($_GET);
     }
 
     // 自动加载类库
-    // new \core\route() -> require_once BASE_DIR.'/core/route.php'
+    // new \xxx\route() -> require_once BASE_DIR.'/xxx/route.php'
     static public function load($class)
     {
         $class = str_replace('\\', '/', $class);
