@@ -28,5 +28,7 @@ else {
 require_once CORE.'/common/function.php';
 require_once CORE.'/main.php';
 
+spl_autoload_register('\core\main::load');
+
 // 启动框架
 \core\main::run();
