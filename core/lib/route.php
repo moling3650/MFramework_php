@@ -24,7 +24,7 @@ class route
         $this->action = isset($patharr[2]) ? $patharr[2] : 'index';
         // URL多余部分转换成GET参数
         $params = array_slice($patharr, 3);
-        for($i=0; $i < floor(count($params) / 2); $i++) {
+        for($i=0; $i < (count($params) >> 1); $i++) {
             $_GET[$params[$i * 2]] = $params[$i * 2 + 1];
         }
     }

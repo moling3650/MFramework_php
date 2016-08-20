@@ -11,5 +11,9 @@ class indexCtrl {
 
     public function index() {
         p('it is index');
+        $model = new \core\lib\model();
+        $sql = 'SELECT * FROM blogs';
+        $res = $model->query($sql);
+        p($res->fetchAll());
     }
 }
