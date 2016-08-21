@@ -12,7 +12,6 @@ namespace core;
 class main
 {
     public static $classMap = array();
-    public $assign = array();
 
     static public function run()
     {
@@ -56,17 +55,15 @@ class main
         }
     }
 
-    public function assign($name, $value)
+    public function display($file, $data=array())
     {
-        $this->assign[$name] = $value;
-    }
+        if(is_file(APP.'/views/'.$file)) {
+            $loader = new \Twig_Loader_Filesystem(APP.'/views');
+            $twig = new \Twig_Environment($loader, array(
+                // 'cache' => BASE_DIR.'/log/cache',
+            ));
 
-    public function display($fileName)
-    {
-        $file = APP.'/views/'.$fileName;
-        if(is_file($file)) {
-            extract($this->assign);
-            require_once $file;
+            $twig->display($file, $data);
         }
     }
 }

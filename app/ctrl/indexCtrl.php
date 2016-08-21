@@ -13,10 +13,10 @@ class indexCtrl extends \core\main
 
     public function index()
     {
-        $model = new model();
-        dump($model);
-
-        $data = $model->select('blogs', '*');
-        dump($data);
+        $data = array(
+            'title' => '视图文件',
+            'data' => 'Hello world',
+        );
+        $this->display('index.html', $data);
     }
 }
