@@ -16,6 +16,7 @@ class main
 
     static public function run()
     {
+        \core\lib\log::init();
         $route = new \core\lib\route();
         $ctrlName = $route->ctrl;
         $action = $route->action;
@@ -26,6 +27,7 @@ class main
             require_once $ctrlFile;
             $ctrl = new $ctrlClass();
             $ctrl->$action();
+            \core\lib\log::log($ctrlName.'->'.$action);
         }
         else {
             throw new \Exception("找不到控制器:".$ctrlName);
