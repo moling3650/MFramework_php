@@ -1,0 +1,20 @@
+{
+    "name": "MFramework-php",
+    "description": "PHP Framework",
+    "type": "Framework",
+    "keyword": [
+        "PHP",
+        "MVC Framework"
+    ],
+    "require": {
+        "php": ">= 5.3.0",
+        "filp/whoops": "*",
+        "symfony/var-dumper": "*"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}
