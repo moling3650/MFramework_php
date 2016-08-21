@@ -7,7 +7,10 @@
  */
 
 return array(
-    'DSN'=>'mysql:host=localhost;dbname=mblog',
-    'USERNAME'=>'root',
-    'PASSWOD'=>'test',
+    'database_type' => 'mysql',
+    'database_name' => 'mblog',
+    'server' => 'localhost',
+    'username' => 'root',
+    'password' => 'test',
+    'charset' => 'utf8'
 );

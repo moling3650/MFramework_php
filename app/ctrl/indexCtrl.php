@@ -6,16 +6,17 @@
  * @version $Id$
  */
 namespace app\ctrl;
+use core\lib\model;
 
 class indexCtrl extends \core\main
 {
 
     public function index()
     {
-        $data = 'Hello World';
-        $title = '视图文件';
-        $this->assign('title', $title);
-        $this->assign('data', $data);
-        $this->display('index.html');
+        $model = new model();
+        dump($model);
+
+        $data = $model->select('blogs', '*');
+        dump($data);
     }
 }
