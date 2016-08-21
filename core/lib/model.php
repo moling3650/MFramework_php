@@ -7,17 +7,17 @@
  */
 
 namespace core\lib;
+use core\lib\conf;
 
-class model extends \PDO {
-
-    public function  __construct() {
-        $dsn ='mysql:host=localhost;dbname=mblog';
-        $user = 'root';
-        $password = 'test';
+class model extends \PDO
+{
+    public function  __construct()
+    {
+        $db = conf::get('database');
         try {
-            parent::__construct($dsn, $user, $password);
+            parent::__construct($db['DSN'], $db['USERNAME'], $db['PASSWOD']);
         }
-        catch (\PDOException $e) {
+        catch(\PDOException $e) {
             p($e->getMessage());
         }
 
