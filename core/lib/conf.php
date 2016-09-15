@@ -8,35 +8,38 @@
 
 namespace core\lib;
 
-class conf
+class Conf
 {
-    static public $conf = array();
-    static public function get($fileName, $name=NULL)
+    /**
+     * 缓存配置文件
+     * @var array $configs
+     */
+    public static $configs = [];
+    /**
+     * 取得一个配置文件的所有配置或其中一个配置项
+     * @param  string $name 配置文件名
+     * @param  string $key  配置项名
+     * @return mixed        找不到配置时返回false，当$key为空时返回文件所有配置，否则只返回$key这配置项
+     */
+    public static function get($name, $key=null)
     {
-        // 判断配置是否已缓存
-        if(isset(self::$conf[$fileName])){
-           $config = self::$conf[$fileName];
-        }
-        else {
-            // 判断配置文件是否存在
-            $file = BASE_DIR.'/core/config/'.$fileName.'.php';
-            if(!is_file($file)) {
-                throw new \Exception('没有这个配置文件');
+        // 没有缓存过配置的话就导入配置文件
+        if (!isset(self::$configs[$name])) {
+            $file = CONFIG_DIR . '/' . $name . '.php';
+            // 没有找到配置文件就返回false
+            if (!is_file($file)) {
+                return false;
             }
-            $config = require_once $file;
-            // 缓存配置
-            self::$conf[$fileName] = $config;
-        }
-        // 如果$name没有设置则返回所有的设置
-        if ($name === NULL) {
-            return $config;
+
+            self::$configs[$name] = include $file;
         }
 
-        // 判断配置项是否存在
-        if(!isset($config[$name])) {
-            throw new \Exception('没有这个配置项');
+        $config = self::$configs[$name];
+        // 如果$key为null则返回配置文件的所有设置
+        if (is_null($key)) {
+            return $config;
         }
-        // 返回配置
-        return $config[$name];
+        // 返回配置项或false
+        return isset($config[$key]) ? $config[$key] : false;
     }
 }
