@@ -13,6 +13,7 @@
 // 定义常量
 define('BASE_DIR', realpath('./'));
 define('CORE', BASE_DIR.'/core');
+define('CONFIG_DIR', BASE_DIR.'/core/config');
 define('APP', BASE_DIR.'/app');
 define('MODULE', 'app');
 
